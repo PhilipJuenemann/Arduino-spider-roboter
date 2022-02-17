@@ -1,0 +1,104 @@
+#include <Servo.h>
+Servo horizontal_0;    // erzeugt ein Servomotor-Objekt
+Servo vertical_0;     // erzeugt ein Servomotor-Objekt
+Servo leg_0;
+
+Servo horizontal_1;
+Servo vertical_1;     
+Servo leg_1;
+
+Servo horizontal_2;
+Servo vertical_2;     
+Servo leg_2;
+
+Servo horizontal_3;
+Servo vertical_3;     
+Servo leg_3;
+// maximal können acht Servomotor-Objekte erzeugt werden
+int pos1 = 0; 
+int pos2 = 45;  
+int pos3 = 160; 
+int pos4 = 75;
+int pos5 = 105; // Variable, die die Servoposition (Winkel) speichert
+int pos6 = 20;
+void setup(){
+  horizontal_0.attach(4);
+  leg_0.attach(3);  
+  vertical_0.attach(2);    //Complex 0
+
+  horizontal_1.attach(7);
+  leg_1.attach(6);  
+  vertical_1.attach(5);    //Complex 1
+
+ 
+  horizontal_2.attach(19);
+  leg_2.attach(18);  
+  vertical_2.attach(17);     // Complex 2
+  
+  horizontal_3.attach(16);
+  leg_3.attach(15);  
+  vertical_3.attach(14);     //Complex 3 
+
+  //delay for code upload
+  delay(7000);
+  //in default position gehen
+  defaultPos();
+  
+}
+
+//dafault position
+void defaultPos(){
+  
+  vertical_0.write(pos2);
+  vertical_1.write(135);
+  vertical_2.write(pos2);
+  vertical_3.write(135);
+
+  horizontal_0.write(pos4);
+  horizontal_2.write(pos4);
+  horizontal_1.write(pos5);
+  horizontal_3.write(pos5);
+
+  leg_0.write(30);
+  leg_1.write(pos3);
+  leg_2.write(pos6);
+  leg_3.write(pos3);
+  delay(5000);
+}
+
+//zum benutzen exp.:  verti_0(20) ist gleich zu vertical_0.write(20)
+void verti_0(int i){ vertical_0.write(i); }
+void verti_1(int i){ vertical_1.write(180-i); }
+void verti_2(int i){ vertical_2.write(i); }
+void verti_3(int i){ vertical_3.write(180-i); }
+
+//Todo: nochmal testen und gucken was richtig ist
+void horizontal_fl(int i){ vertical_0.write(i); }
+void horizontal_fr(int i){ vertical_1.write(180-i); }
+void horizontal_rr(int i){ vertical_2.write(i); }
+void horizontal_rl(int i){ vertical_3.write(180-i); }
+
+//funktion laufen
+void laufen(){
+  
+   delay(400);
+   vertical_2.write(20);
+   horizontal_2.write(30);
+   delay(100);
+   vertical_2.write(pos2);
+   delay(400);
+   
+   horizontal_1.write(75);
+   horizontal_3.write(135);
+  
+}
+
+void loop()
+{
+  //test
+  verti_0(20);
+  //horizontal_2.write(30);
+  
+  delay(500);
+
+}
